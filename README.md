@@ -31,27 +31,35 @@ per lavorare su questo repository sono necessari:
 * git versione 1.8 o superiore
 * editor e terminale a scelta
 
-1. clonare il repository attuale
+Clonare il repository ``master`` in locale
 
+```bash
     $ git clone http://github.com/radiocicletta/radiociblog-template
+```
 
-2. entrare nel repository e creare un nuovo branch locale col nome del template
+Entrare nel repository e creare un nuovo branch locale col nome del template
 
+```bash
     $ cd radiociblog-template
     $ git branch nuovotemplate
+```
 
-3. passare al branch appena creato e modificarlo a proprio piacere
+Passare al branch appena creato e modificarlo a proprio piacere
 
+```bash
     $ git checkout nuovotemplate
     Switched to branch 'nuovotemplate'
     $
+```
 
-4. una volta modificato, committare le proprie modifiche e pusharle al nuovo
+Una volta modificato, committare le proprie modifiche e pusharle al nuovo
 branch appena creato
 
+```bash
     $ git add [file 1 ... file N]
     $ git commit
     $ git push -u origin nuovotemplate
+```
 
-5. ogni modifica successiva andrà committata al branch remoto nella maniera
-del punto 4, omettendo l'opzione *-u*
+ogni modifica successiva andrà committata al branch remoto nella maniera
+del punto precedente, omettendo l'opzione *-u*
