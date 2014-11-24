@@ -6,6 +6,8 @@ sito radiocicletta.it.
 
 Ogni branch è una proposta di layout da usare per il sito.
 
+Ogni nuovo template va costruito sulla base delle informazioni raccolte sul wiki di questo progetto https://github.com/radiocicletta/radiociblog-template/wiki
+
 Aggiungere nuovi layout
 -----------------------
 
