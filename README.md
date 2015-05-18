@@ -65,3 +65,25 @@ branch appena creato
 
 ogni modifica successiva andrà committata al branch remoto nella maniera
 del punto precedente, omettendo l'opzione *-u*
+
+carloratm proposal template
+---------------------------
+
+This template need [compass](http://compass-style.org/) and
+[scss-lint](https://github.com/brigade/scss-lint) to run.
+
+You can install them with:
+
+```bash
+    $ gem install compass
+    $ gem install scss-lint
+```
+
+To test this template, just run:
+
+```bash
+    $ ./dev.sh
+```
+
+Then visit `http://0.0.0.0:8000/`
+
