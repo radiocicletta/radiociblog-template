@@ -1,0 +1,413 @@
+//* scss-compile-options: --precision 8
+
+//
+// 0        $screen-s     $screen-m      $screen-l         $limit
+// |------------|-------------|---------------|--------------|-------- ....
+// |<----S----->|<-----M----->|<------L------>|<-----XL--------------- ....
+//
+
+
+
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+
+// grid SIZE
+
+$grid-s: 100%;
+$grid-m: 98%;
+$grid-l: 95%;
+$grid-xl: 1170px;
+
+
+
+
+// SCREEN SIZE
+
+$screen-s: 720px;
+$screen-m: 1000px;
+$screen-l: 1200px;
+
+
+
+
+
+// GRID VARIABLES
+
+$s-grid: 12; // Number of columns in the small grid
+$m-grid: 12; // Number of columns in the medium grid
+$l-grid: 12; // Number of columns in the large grid
+
+$gutter: 15px;
+
+
+$block-columns: 1, 2, 3, 4, 5, 6, 7; // Add the number of columns you need
+
+
+
+// grid GENERATOR
+
+.grid {
+
+    @media (max-width: $screen-s) {
+        width: $grid-s;
+    }
+
+    @media (min-width: $screen-s + 1) {
+        width: $grid-m;
+    }
+
+    @media (min-width: $screen-m + 1) {
+        width: $grid-l;
+    }
+
+    @media (min-width: $screen-l + 1) {
+        width: $grid-xl;
+    }
+}
+
+
+
+
+
+// GRID GENERATOR
+@mixin column {
+    float: left;
+    min-height: 1px;
+    padding-left: $gutter;
+    padding-right: $gutter;
+}
+
+@mixin s-grid {
+    @for $i from 1 through $s-grid {
+        .s-#{$i} {
+            @include column;
+            width: percentage((1 / $s-grid) * $i);
+        }
+    }
+}
+
+@mixin m-grid {
+    @for $i from 1 through $m-grid {
+        .m-#{$i} {
+            @include column;
+            width: percentage((1 / $m-grid) * $i);
+        }
+    }
+}
+
+@mixin l-grid {
+    @for $i from 1 through $l-grid {
+        .l-#{$i} {
+            @include column;
+            width: percentage((1 / $l-grid) * $i);
+        }
+    }
+}
+
+
+
+
+
+// COLUMNS OFFSETS GENERATOR
+
+@mixin offset-s-grid {
+    @for $i from 1 through $s-grid {
+        .off-s-#{$i} {
+            margin-left: percentage((1 / $s-grid) * $i);
+        }
+    }
+}
+
+@mixin offset-m-grid {
+    @for $i from 1 through $m-grid {
+        .off-m-#{$i} {
+            margin-left: percentage((1 / $m-grid) * $i);
+        }
+    }
+}
+
+@mixin offset-l-grid {
+    @for $i from 1 through $l-grid {
+        .off-l-#{$i} {
+            margin-left: percentage((1 / $l-grid) * $i);
+        }
+    }
+}
+
+
+
+
+
+// SMALL GRID
+@include s-grid;
+@include offset-s-grid;
+
+
+
+// MEDIUM GRID
+@media (min-width: $screen-s + 1) and (max-width: $screen-m) {
+    @include m-grid;
+    @include offset-m-grid;
+}
+
+
+
+// LARGE GRID
+@media (min-width: $screen-m + 1) {
+    @include l-grid;
+    @include offset-l-grid;
+}
+
+
+
+
+
+
+// BLOCK GRID GENERATOR
+
+@mixin block($number) {
+    > * {
+        width: percentage(1 / $number);
+        float: left;
+        padding: 0 $gutter;
+    }
+
+    > *:nth-child(#{$number+1}) {
+        content: ' ';
+        //display: table; // BUG: NOT PERFECT ALIGNING WITHIN MULTIPLE LINES
+        clear: both;
+    }
+}
+
+
+
+
+// BLOCK GRID
+@media (max-width: ($screen-m - 1)) {
+    @each $number in $block-columns {
+        .block-s-#{$number} {
+            @include block($number);
+        }
+    }
+}
+
+@media (min-width: $screen-m) and (max-width: ($screen-l - 1)) {
+    @each $number in $block-columns {
+        .block-m-#{$number} {
+            @include block($number);
+        }
+    }
+}
+
+@media (min-width: $screen-l) {
+    @each $number in $block-columns {
+        .block-l-#{$number} {
+            @include block($number);
+        }
+    }
+}
+
+
+
+
+// GENERAL
+
+[class*='block-'] {
+    overflow: auto;
+
+    &:before {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+
+.grid {
+    margin: 0 auto;
+    display: block;
+
+    &:before {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+
+    &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+
+
+
+
+// LAST
+
+.last + * {
+    content: ' ';
+    // display: table;
+    clear: both;
+}
+
+.last + *:before {
+    content: ' ';
+    display: table;
+    clear: both;
+}
+
+@media (max-width: $screen-s) {
+    .last-s + * {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+@media (min-width: $screen-s + 1) and (max-width: ($screen-m)) {
+    .last-m + * {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+@media (min-width: $screen-m + 1) {
+    .last-l + * {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+
+
+// NESTED GRID
+
+.nested-grid {
+    &:before,
+    &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+
+// UTILITIES
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.no-gutter {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.no-gutter-right {
+    padding-right: 0 !important;
+}
+
+.no-gutter-left {
+    padding-left: 0 !important;
+}
+
+.gutter {
+    padding-left: $gutter !important;
+    padding-right: $gutter !important;
+}
+
+.left {
+    float: left !important;
+}
+
+.right {
+    float: right !important;
+}
+
+.centered {
+    float: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 0;
+}
+
+.grid > * + * {
+    margin-top: 0;
+}
+
+
+
+
+// VISIBILITY & NO GUTTER CLASSES
+
+.visible-s,
+.visible-m,
+.visible-l {
+    display: none;
+}
+
+@media (max-width: ($screen-s)) {
+    .hidden-s {
+        display: none !important;
+    }
+
+    .visible-s {
+        display: block !important;
+    }
+
+    .no-gutter-s {
+        padding: 0;
+    }
+}
+
+@media (min-width: $screen-s + 1) and (max-width: ($screen-m)) {
+    .hidden-m {
+        display: none !important;
+    }
+
+    .visible-m {
+        display: block !important;
+    }
+
+    .no-gutter-m {
+        padding: 0;
+    }
+}
+
+@media (min-width: $screen-m + 1) {
+    .hidden-l {
+        display: none !important;
+    }
+
+    .visible-l {
+        display: block !important;
+    }
+
+    .no-gutter-l {
+        padding: 0;
+    }
+}

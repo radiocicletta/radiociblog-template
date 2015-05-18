@@ -1,0 +1,21 @@
+
+body {
+    background: black;
+
+    > header {
+        background: $headerbg;
+    }
+
+    main:first-of-type {
+        background: $mainbg;
+    }
+
+    aside {
+        background: $asidebg;
+    }
+
+    > footer {
+        background: $footerbg;
+    }
+}
+
