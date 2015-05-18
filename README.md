@@ -69,7 +69,7 @@ del punto precedente, omettendo l'opzione *-u*
 carloratm proposal template
 ---------------------------
 
-This template need [compass](http://compass-style.org/) and
+This template needs [compass](http://compass-style.org/) and
 [scss-lint](https://github.com/brigade/scss-lint) to run.
 
 You can install them with:
