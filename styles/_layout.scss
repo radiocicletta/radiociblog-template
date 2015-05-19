@@ -1,21 +1,71 @@
 
 body {
-    background: black;
+    font-family: $main-font;
+    background: $mine-shaft;
 
     > header {
-        background: $headerbg;
+        background: red;
     }
 
     main:first-of-type {
-        background: $mainbg;
+        background: red;
     }
 
     aside {
-        background: $asidebg;
+        background: red;
     }
 
     > footer {
-        background: $footerbg;
+        background: black;
+        color: white;
     }
+}
+
+p {
+    line-height: 1.4;
+}
+
+a,
+a:visited {
+    color: $magneto;
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    color: lighten($magneto, 20);
+}
+
+
+
+
+// footer
+.footer-menu {
+    background: lighten(black, 6);
+    padding-top: ($gutter * 4) - 5px;
+    padding-bottom: $gutter * 4;
+
+    h2 {
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        margin-bottom: $gutter;
+        margin-top: $gutter;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    .menu li:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.footer-bottom {
+    font-size: 14px;
+    color: darken(white, 50);
+    letter-spacing: .5px;
+    padding-top: $gutter * 4;
+    padding-bottom: $gutter * 4;
 }
 
