@@ -1,0 +1,19 @@
+@mixin clearfix() {
+    &:after {
+        display: table;
+        content: '';
+        clear: both;
+    }
+}
+
+@mixin btn($c) {
+    @include border-radius(3px);
+    @include inline-block();
+    @include transition(background, .2s);
+    padding: $gutter $gutter * 2;
+    border: 2px solid $c;
+
+    &:hover {
+        background: rgba(black, .5);
+    }
+}

@@ -7,8 +7,10 @@ body {
         background: red;
     }
 
-    main:first-of-type {
-        background: red;
+    main {
+        color: white;
+        padding-top: $gutter;
+        padding-bottom: $gutter * 4;
     }
 
     aside {
@@ -69,3 +71,74 @@ a:active {
     padding-bottom: $gutter * 4;
 }
 
+
+
+
+// blogs
+.bloglist {
+    header {
+        h1 {
+            //background: black;
+            padding-top: $gutter * 2;
+            padding-bottom: $gutter * 2;
+            font-size: 28px;
+        }
+
+        .articleinfo {
+            color: darken(white, 20);
+            font-size: 13px;
+            border-bottom: 2px solid $magneto;
+            padding-bottom: $gutter;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+
+            a {
+                font-weight: bold;
+            }
+
+            ul {
+                @include clearfix();
+            }
+
+            li {
+                display: inline-block;
+                margin-right: $gutter;
+
+                @media screen and (max-width: $screen-s) {
+                    display: block;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .articlecontent {
+        padding-top: $gutter * 4;
+        padding-bottom: $gutter * 4;
+
+        @media screen and (max-width: $screen-s) {
+            text-align: justify;
+        }
+
+        .readmore {
+            @include btn($magneto);
+            margin-top: $gutter * 4;
+
+            @media screen and (max-width: $screen-s) {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        .readmoreblog {
+            @include btn($magneto);
+            margin-top: $gutter * 4;
+
+            @media screen and (max-width: $screen-s) {
+                display: block;
+                margin-top: $gutter;
+                text-align: center;
+            }
+        }
+    }
+}
