@@ -33,7 +33,7 @@ $(function(evt) {
                             '<li><span id="infobar-third">Apri il player separato</span></li>' +
                         '</ul>';
 
-    document.getElementById("player").appendChild(player);
+   /* document.getElementById("player").appendChild(player);*/
     if (lastvisit === null)  {
         document.getElementById("playercontainer")
             .parentNode
